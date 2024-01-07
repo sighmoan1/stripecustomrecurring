@@ -1,0 +1,92 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+section {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.description h1 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.description p {
+  font-size: 16px;
+  color: #666;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.donation-type label {
+  display: block;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.donation-type input[type="radio"] {
+  margin-right: 10px;
+}
+
+.input-group {
+  margin: 20px 0;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button#checkout-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button#checkout-button:hover {
+  background-color: #218838;
+}
+
+.currency-input {
+  display: flex;
+  align-items: center;
+}
+
+.currency-symbol {
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+input[type="number"] {
+  padding-left: 5px;
+}

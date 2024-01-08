@@ -18,6 +18,7 @@ app.post('/create-checkout-session', async (req, res) => {
   if (donationType === 'monthly') {
     // Create subscription session
     session = await stripe.checkout.sessions.create({
+      submit_type: 'donate',
       mode: 'subscription',
       billing_address_collection: "required",
       line_items: [
@@ -36,23 +37,26 @@ app.post('/create-checkout-session', async (req, res) => {
           quantity: 1,
         },
       ],
-      custom_fields: [{
-        key: 'giftaid',
-        label: { type: 'custom', custom: 'May we claim gift aid on your donation?'},
-        type: 'dropdown',
-        dropdown: {
-          options: [
-            {label: "Yes", value: "Yes"},
-            {label: 'No', value: 'No'},
-          ]
+      custom_fields: [
+        {
+          key: 'giftaid_declaration',
+          label: { 
+            type: 'custom', 
+            custom: 'Gift Aid Declaration: I am a UK Tax Payer and I agree that ACT International can reclaim tax on all qualifying donations I have made, as well as any future donations, until I notify them otherwise. I understand that if I pay less income/capital gains tax than the amount of Gift Aid claimed on all my donations in the tax year in which they are received, it is my responsibility to pay any difference. I must notify the charity of any changes to my tax status, including changes to my name or address.' 
+          },  
+          type: 'checkbox',
+          checkbox: {
+            required: true,
+          }
         }
-      }],
+      ],
       success_url: `${YOUR_DOMAIN}/success.html`,
       cancel_url: `${YOUR_DOMAIN}/cancel.html`,
     });
   } else {
     // Create one-time payment session
     session = await stripe.checkout.sessions.create({
+      submit_type: 'donate',
       mode: 'payment',
       billing_address_collection: "required",
       line_items: [
@@ -61,7 +65,7 @@ app.post('/create-checkout-session', async (req, res) => {
             currency: 'gbp',
             product_data: {
               name: 'One-time Donation',
-              description: 'One-time Donation',
+              description: 'Huge potato',
             },
             unit_amount: amountToCharge,
           },

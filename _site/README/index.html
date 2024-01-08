@@ -1,0 +1,25 @@
+<h1>Custom recurring donation amounts with Stripe</h1>
+<p>This is based on <a href="https://stripe.com/docs/checkout/quickstart">https://stripe.com/docs/checkout/quickstart</a> and <a href="https://youtu.be/1-olKBnmC84?feature=shared">https://youtu.be/1-olKBnmC84?feature=shared</a>.</p>
+<p>It allows you to send custom amounts for one-off or recurring donations to your non-profit. The product and price will be created dynamically at the time the user submits.</p>
+<p>It's useful if you want to ask for one-off and recurring donations and let the user decide.</p>
+<h2>Setting up .env</h2>
+<p>You need a .env file with:</p>
+<pre><code>STRIPE_SECRET_KEY = 'sk...'
+</code></pre>
+<p>Where 'sk...' is your secret key from Stripe. If you want to use this in production, then it would be your real secret key not your test secret key.</p>
+<p>You should also add .env to your .gitignore so that you don't end up writing your secret key to github.</p>
+<h2>Running the sample</h2>
+<ol>
+<li>Build the server</li>
+</ol>
+<pre><code>npm install
+</code></pre>
+<ol start="2">
+<li>Run the server</li>
+</ol>
+<pre><code>npm start
+</code></pre>
+<ol start="3">
+<li>Go to <a href="http://localhost:4242/checkout.html">http://localhost:4242/checkout.html</a></li>
+</ol>
+<p>Main Branch - No gift aid giftaid-metadata - Get the giftaid declaration on the webform and send to Stripe as metadata. Then create reporting to show all payments with giftaid='yes' metadata giftaid-custom-fields - Get the giftaid declaration on the checkout page.</p>

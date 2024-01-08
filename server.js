@@ -4,11 +4,10 @@ const express = require('express');
 const app = express();
 app.use(express.static('public'));
 
-app.use(express.json()); // For parsing application/json
-app.use(express.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const YOUR_DOMAIN = 'http://localhost:4242';
-
 
 app.post('/create-checkout-session', async (req, res) => {
   const { amount, donationType, giftaid } = req.body;
@@ -16,7 +15,6 @@ app.post('/create-checkout-session', async (req, res) => {
 
   let session;
   if (donationType === 'monthly') {
-    // Create subscription session
     session = await stripe.checkout.sessions.create({
       mode: 'subscription',
       billing_address_collection: "required",
@@ -36,22 +34,11 @@ app.post('/create-checkout-session', async (req, res) => {
           quantity: 1,
         },
       ],
-      custom_fields: [{
-        key: 'giftaid',
-        label: { type: 'custom', custom: 'May we claim gift aid on your donation?'},
-        type: 'dropdown',
-        dropdown: {
-          options: [
-            {label: "Yes", value: "Yes"},
-            {label: 'No', value: 'No'},
-          ]
-        }
-      }],
+      metadata: { 'giftaid': giftaid },
       success_url: `${YOUR_DOMAIN}/success.html`,
       cancel_url: `${YOUR_DOMAIN}/cancel.html`,
     });
   } else {
-    // Create one-time payment session
     session = await stripe.checkout.sessions.create({
       mode: 'payment',
       billing_address_collection: "required",
@@ -68,17 +55,7 @@ app.post('/create-checkout-session', async (req, res) => {
           quantity: 1,
         },
       ],
-      custom_fields: [{
-        key: 'giftaid',
-        label: { type: 'custom', custom: 'May we claim gift aid on your donation?'},
-        type: 'dropdown',
-        dropdown: {
-          options: [
-            {label: "Yes", value: "Yes"},
-            {label: 'No', value: 'No'},
-          ]
-        }
-      }],
+      metadata: { 'giftaid': giftaid },
       success_url: `${YOUR_DOMAIN}/success.html`,
       cancel_url: `${YOUR_DOMAIN}/cancel.html`,
     });
@@ -88,4 +65,3 @@ app.post('/create-checkout-session', async (req, res) => {
 });
 
 app.listen(4242, () => console.log('Running on port 4242'));
-

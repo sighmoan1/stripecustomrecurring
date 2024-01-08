@@ -27,6 +27,13 @@
           <span class="currency-symbol">£</span>
           <input type="number" step="0.01" name="amount" id="amount" required value="50" />
         </div>
+              <div class="input-group">
+        <label for="giftaid">May we claim Gift Aid on your donation?</label>
+        <select name="giftaid" id="giftaid">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
       </div>
       <button type="submit" id="checkout-button">Donate</button>
     </form>
@@ -50,14 +57,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 });
-
-Copy code
-document.getElementById('giftaid').addEventListener('change', function() {
-  var selectedOption = this.value;
-  // Send this data to the server
-});
-
-
   </script>
 </body>
 </html>

@@ -33,3 +33,10 @@ npm start
 ~~~
 
 3. Go to [http://localhost:4242/checkout.html](http://localhost:4242/checkout.html)
+
+## branches
+
+main - no giftaid
+giftaid-checkout-field-only - giftaid on checkout form as custom fields
+
+giftaid - giftaid on webform, passing gift aid declaration as metadata, creating reporting to get giftaid declarations off stripe

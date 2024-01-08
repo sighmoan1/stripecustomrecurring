@@ -11,7 +11,7 @@ const YOUR_DOMAIN = 'http://localhost:4242';
 
 
 app.post('/create-checkout-session', async (req, res) => {
-  const { amount, donationType } = req.body;
+  const { amount, donationType, giftaid } = req.body;
   const amountToCharge = parseInt(amount * 100); // Convert to pence
 
   let session;
@@ -19,6 +19,7 @@ app.post('/create-checkout-session', async (req, res) => {
     // Create subscription session
     session = await stripe.checkout.sessions.create({
       mode: 'subscription',
+      billing_address_collection: "required",
       line_items: [
         {
           price_data: {
@@ -35,6 +36,17 @@ app.post('/create-checkout-session', async (req, res) => {
           quantity: 1,
         },
       ],
+      custom_fields: [{
+        key: 'giftaid',
+        label: { type: 'custom', custom: 'May we claim gift aid on your donation?'},
+        type: 'dropdown',
+        dropdown: {
+          options: [
+            {label: "Yes", value: "Yes"},
+            {label: 'No', value: 'No'},
+          ]
+        }
+      }],
       success_url: `${YOUR_DOMAIN}/success.html`,
       cancel_url: `${YOUR_DOMAIN}/cancel.html`,
     });
@@ -42,6 +54,7 @@ app.post('/create-checkout-session', async (req, res) => {
     // Create one-time payment session
     session = await stripe.checkout.sessions.create({
       mode: 'payment',
+      billing_address_collection: "required",
       line_items: [
         {
           price_data: {
@@ -55,6 +68,17 @@ app.post('/create-checkout-session', async (req, res) => {
           quantity: 1,
         },
       ],
+      custom_fields: [{
+        key: 'giftaid',
+        label: { type: 'custom', custom: 'May we claim gift aid on your donation?'},
+        type: 'dropdown',
+        dropdown: {
+          options: [
+            {label: "Yes", value: "Yes"},
+            {label: 'No', value: 'No'},
+          ]
+        }
+      }],
       success_url: `${YOUR_DOMAIN}/success.html`,
       cancel_url: `${YOUR_DOMAIN}/cancel.html`,
     });

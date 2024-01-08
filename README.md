@@ -6,7 +6,7 @@ It allows you to send custom amounts for one-off or recurring donations to your 
 
 It's useful if you want to ask for one-off and recurring donations and let the user decide.
 
-# Setting up .env
+## Setting up .env
 
 You need a .env file with:
 

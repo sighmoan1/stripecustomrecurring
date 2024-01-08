@@ -28,7 +28,6 @@
           <input type="number" step="0.01" name="amount" id="amount" required value="50" />
         </div>
       </div>
-
       <button type="submit" id="checkout-button">Donate</button>
     </form>
   </section>
@@ -51,6 +50,14 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 });
+
+Copy code
+document.getElementById('giftaid').addEventListener('change', function() {
+  var selectedOption = this.value;
+  // Send this data to the server
+});
+
+
   </script>
 </body>
 </html>

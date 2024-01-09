@@ -21,29 +21,44 @@
         </label>
       </div>
 
-      <div class="input-group">
+          <div class="input-group">
         <label for="amount" id="amount-label">One-off Donation Amount:</label>
         <div class="currency-input">
           <span class="currency-symbol">£</span>
           <input type="number" step="0.01" name="amount" id="amount" required value="50" />
         </div>
-              <div class="input-group">
-        <label for="giftaid">May we claim Gift Aid on your donation?</label>
-        <select name="giftaid" id="giftaid">
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
+
+
+      <div class="input-group">
+        <label>Is this a personal donation?</label>
+        <label>
+          <input type="radio" name="personalDonation" value="yes" id="personal-donation-yes"> Yes
+        </label>
+        <label>
+          <input type="radio" name="personalDonation" value="no" id="personal-donation-no" checked> No
+        </label>
       </div>
+
+        <div class="input-group" id="giftaid-question" style="display: none;">
+        <h3> If you are a UK taxpayer, you can boost your donation by 25p of Gift Aid for every £1 you donate, at no extra cost to you.</h3>
+            <input type="checkbox" name="giftaid" id="giftaid" value="yes">
+            <label for="giftaid">Yes, I am a UK Tax Payer and I would like Action for Child Trauma International to reclaim the tax on all qualifying donations I have made, as well as any future donations, until I notify them otherwise. </label>
+            <p>I understand that if I pay less income/capital gains tax than the amount of Gift Aid claimed on all my donations in the tax year in which they are received, it is my responsibility to pay any difference and that I must notify the charity of any changes to my tax status, including changes to my name or address.</p>
+        </div>
       </div>
       <button type="submit" id="checkout-button">Donate</button>
     </form>
   </section>
 
-  <script>
+<script>
 document.addEventListener("DOMContentLoaded", function() {
   var oneTime = document.getElementById('one-time');
   var monthly = document.getElementById('monthly');
   var amountLabel = document.getElementById('amount-label');
+  var personalYes = document.getElementById('personal-donation-yes');
+  var personalNo = document.getElementById('personal-donation-no');
+  var giftaidCheckbox = document.getElementById('giftaid');
+  var giftaidQuestion = document.getElementById('giftaid-question');
 
   oneTime.addEventListener('change', function() {
     if(this.checked) {
@@ -56,7 +71,22 @@ document.addEventListener("DOMContentLoaded", function() {
       amountLabel.textContent = 'Monthly Donation Amount:';
     }
   });
+
+  personalYes.addEventListener('change', function() {
+    if(this.checked) {
+      giftaidQuestion.style.display = 'block';
+      giftaidCheckbox.disabled = false;
+    }
+  });
+
+  personalNo.addEventListener('change', function() {
+    if(this.checked) {
+      giftaidQuestion.style.display = 'none';
+      giftaidCheckbox.checked = false;
+      giftaidCheckbox.disabled = true;
+    }
+  });
 });
-  </script>
+</script>
 </body>
 </html>

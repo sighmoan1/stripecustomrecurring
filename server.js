@@ -7,7 +7,7 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const YOUR_DOMAIN = 'http://localhost:4242';
+const YOUR_DOMAIN = 'https://stripecustomrecurring.vercel.app/';
 
 app.post('/create-checkout-session', async (req, res) => {
   const { amount, donationType, giftaid } = req.body;

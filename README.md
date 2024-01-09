@@ -6,7 +6,7 @@ It allows you to send custom amounts for one-off or recurring donations to your 
 
 It's useful if you want to ask for one-off and recurring donations and let the user decide.
 
-# Setting up .env
+## Setting up .env
 
 You need a .env file in your root directory containing:
 
@@ -34,9 +34,9 @@ npm start
 
 3. Go to [http://localhost:4242/checkout.html](http://localhost:4242/checkout.html)
 
-Main Branch - No gift aid
-giftaid-metadata - Get the giftaid declaration on the webform and send to Stripe as metadata. Then create reporting to show all payments with giftaid='yes' metadata
-giftaid-custom-fields - Get the giftaid declaration on the checkout page. 
+## branches
 
+main - no giftaid
+giftaid-checkout-field-only - giftaid on checkout form as custom fields
 
-
+giftaid - giftaid on webform, passing gift aid declaration as metadata, creating reporting to get giftaid declarations off stripe

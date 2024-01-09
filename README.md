@@ -8,7 +8,7 @@ It's useful if you want to ask for one-off and recurring donations and let the u
 
 ## Setting up .env
 
-You need a .env file with:
+You need a .env file in your root directory containing:
 
 ```
 STRIPE_SECRET_KEY = 'sk...'

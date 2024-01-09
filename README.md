@@ -34,4 +34,6 @@ npm start
 
 3. Go to [http://localhost:4242/checkout.html](http://localhost:4242/checkout.html)
 
-Main Branch - No gift aid giftaid-metadata - Get the giftaid declaration on the webform and send to Stripe as metadata. Then create reporting to show all payments with giftaid='yes' metadata giftaid-custom-fields - Get the giftaid declaration on the checkout page.
+* Main Branch - No gift aid
+* giftaid-metadata - Get the giftaid declaration on the webform and send to Stripe as metadata. Then create reporting to show all payments with giftaid='yes' metadata
+* giftaid-custom-field - Get the giftaid declaration on the checkout page.
